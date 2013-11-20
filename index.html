@@ -9,12 +9,19 @@
     <link rel="stylesheet" href="css/bPresentation.css">
 </head>
 <body>
-    <div id="presentation"></div>
+    <div class="jsPresentation"></div>
+    <div class="jsPresentation2"></div>
     <script type="text/html" id="presentationTemplate">
 
         <div class="bPresentation__eWrapper">
             <div class="bPresentation">
-                <div class="bSlide">Hello, <%=hello%></div>
+                <div class="bSlide">
+                    <% for (var i = 0, length = slides.length; i < length; i++) {%>
+                        <div>
+                            <img src="<%= slides[i].image %>" />
+                        </div>
+                    <% } %>
+                </div>
                 <div class="bControlPanel__eWrapper">
                     <div class="bControlPanel">
                         <div class="bControlPanel__eNavigation">
@@ -37,6 +44,7 @@
     </script>
     <script src="js/vendor/microTemplate.js"></script>
     <script src="js/vendor/jquery-2.0.3.min.js"></script>
+    <script src="js/app/Presentation.js"></script>
     <script src="js/app/app.js"></script>
 </body>
 </html>
