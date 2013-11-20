@@ -1,3 +1,5 @@
 $(document).ready(function () {
-    console.log('more');
+    var results = document.getElementById("presentation");
+    results.innerHTML = tmpl("presentationTemplate", {hello: 'Adam'});
+
 });

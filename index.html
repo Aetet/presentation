@@ -9,28 +9,33 @@
     <link rel="stylesheet" href="css/bPresentation.css">
 </head>
 <body>
-    <div class="bPresentation__eWrapper">
-        <div class="bPresentation">
-            <div class="bSlide">PPPP</div>
-            <div class="bControlPanel__eWrapper">
-                <div class="bControlPanel">
-                    <div class="bControlPanel__eNavigation">
-                        <a href="" class="bControlPanel__eToFirstSlide">first</a>
-                        <a href="" class="bControlPanel__eToPreviousSlide">prev</a>
-                        <a href="" class="bControlPanel__eToNextSlide">next</a>
-                        <a href="" class="bControlPanel__eToLastSlide">last</a>
+    <div id="presentation"></div>
+    <script type="text/html" id="presentationTemplate">
+
+        <div class="bPresentation__eWrapper">
+            <div class="bPresentation">
+                <div class="bSlide">Hello, <%=hello%></div>
+                <div class="bControlPanel__eWrapper">
+                    <div class="bControlPanel">
+                        <div class="bControlPanel__eNavigation">
+                            <a href="" class="bControlPanel__eToFirstSlide">first</a>
+                            <a href="" class="bControlPanel__eToPreviousSlide">prev</a>
+                            <a href="" class="bControlPanel__eToNextSlide">next</a>
+                            <a href="" class="bControlPanel__eToLastSlide">last</a>
+                        </div>
+                        <div class="bControlPanel__ePageNumberSwitcher">
+                            <a href="#" class="bControlPanel__eFullScreen" title="View Fullscreen" rel="nofollow">&nbsp;</a> 
+                            <label class="bControlPanel__eGoToSlideLabel">
+                                <input type="text" name="bControlPanel__eGoToSlideInput" value="1">
+                                <span class="bControlPanel__eGoToSlideFrom">/65</span>
+                            </label>
+                        </div>
                     </div>
-                    <div class="bControlPanel__ePageNumberSwitcher">
-                        <a href="#" class="bControlPanel__eFullScreen" title="View Fullscreen" rel="nofollow">&nbsp;</a> 
-                        <label class="bControlPanel__eGoToSlideLabel">
-                            <input type="text" name="bControlPanel__eGoToSlideInput" value="1">
-                            <span class="bControlPanel__eGoToSlideFrom">/65</span>
-                        </label>
-                    </div>
-                </div>
-            </div> 
+                </div> 
+            </div>
         </div>
-    </div>
+    </script>
+    <script src="js/vendor/microTemplate.js"></script>
     <script src="js/vendor/jquery-2.0.3.min.js"></script>
     <script src="js/app/app.js"></script>
 </body>
