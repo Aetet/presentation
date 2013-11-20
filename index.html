@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Presentation</title>
+
+    <link rel="stylesheet" href="css/bSlide.css">
+    <link rel="stylesheet" href="css/bControlPanel.css">
     <link rel="stylesheet" href="css/bPresentation.css">
 </head>
 <body>
-    <div class="bPresentation">
-        <div class="bPresentation__eWrapper">
+    <div class="bPresentation__eWrapper">
+        <div class="bPresentation">
             <div class="bSlide">PPPP</div>
-            <div class="bControlPanel">
-                <ul>
-                    <li class="bPresentation__eNavigation">slsl</li>
-                    <li class="bPresentation__ePageSwitcher">vkdk</li>
-                </ul>
-            </div>
+            <div class="bControlPanel__eWrapper">
+                <div class="bControlPanel">
+                    <div class="bControlPanel__eNavigation">
+                        <a href="" class="bControlPanel__eToFirstSlide">first</a>
+                        <a href="" class="bControlPanel__eToPreviousSlide">prev</a>
+                        <a href="" class="bControlPanel__eToNextSlide">next</a>
+                        <a href="" class="bControlPanel__eToLastSlide">last</a>
+                    </div>
+                    <div class="bControlPanel__ePageNumberSwitcher">
+                        <a href="#" class="bControlPanel__eFullScreen" title="View Fullscreen" rel="nofollow">&nbsp;</a> 
+                        <label class="bControlPanel__eGoToSlideLabel">
+                            <input type="text" name="bControlPanel__eGoToSlideInput" value="1">
+                            <span class="bControlPanel__eGoToSlideFrom">/65</span>
+                        </label>
+                    </div>
+                </div>
+            </div> 
         </div>
     </div>
     <script src="js/vendor/jquery-2.0.3.min.js"></script>

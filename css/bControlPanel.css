@@ -1,0 +1,46 @@
+.bControlPanel__eNavigation {
+    float: left;    
+}
+
+.bControlPanel__eWrapper {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    max-height: 38px;
+
+}
+
+.bControlPanel {
+    overflow: hidden;
+    margin: 0;
+    padding: 3px 6px;
+    width: auto;
+    position: relative;
+}
+
+.bControlPanel__eNavigation {
+    display: block;
+    width: 120px;
+    margin: 0 auto;
+}
+
+.bControlPanel__ePageNumberSwitcher {
+    float: right;
+}
+
+a.bControlPanel__eFullScreen {
+    float: right;
+}
+
+.bControlPanel__eGoToSlideLabel {
+    float: right;
+}
+
+.bControlPanel__eGoToSlideInput {
+
+}
+
+.bControlPanel__eGoToSlideFrom {
+
+}

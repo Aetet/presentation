@@ -5,6 +5,17 @@
 .bPresentation__eWrapper {
     width: 600px;
     height: 400px;
-    background-color: #666;
+    background-color: white;
     border: 2px solid black;
+}
+.bPresentation__eNavigation {
+    display: block;
+    width: 106px;
+    margin: 0 auto;
+}
+
+.bPresentation__ePageNumberSwitcher {
+}
+.bPresentation__eFullScreen {
+    float: right;
 }
