@@ -1,0 +1,10 @@
+.bPresentation {
+    
+}
+
+.bPresentation__eWrapper {
+    width: 600px;
+    height: 400px;
+    background-color: #666;
+    border: 2px solid black;
+}
