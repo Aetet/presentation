@@ -1,4 +1,19 @@
 .bSlide {
     height: 365px;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
+    overflow: hidden;
+}
+
+.bSlide__eNoSlides {
+    margin: auto;
+    width: 284px;
+    text-align: center;
+}
+
+.bSlide__eSlideContent {
+    height: 0;
+}
+
+.bSlide__eSlideContent__mShown {
+    height: 100%;
 }

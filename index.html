@@ -10,31 +10,32 @@
 </head>
 <body>
     <div class="jsPresentation"></div>
-    <div class="jsPresentation2"></div>
+    <div class="jsPresentation2 presentationRightPosition"></div>
     <script type="text/html" id="presentationTemplate">
 
         <div class="bPresentation__eWrapper">
             <div class="bPresentation">
                 <div class="bSlide">
+                    <% if (!slides.length) %>
+                        <div class="bSlide__eNoSlides">Sorry Buddy, but your slides is in another presentation</div>
                     <% for (var i = 0, length = slides.length; i < length; i++) {%>
-                        <div>
-                            <img src="<%= slides[i].image %>" />
+                        <div class="bSlide__eSlideContent <%= slides[i].current %>">
+                            <img class="bSlide__eImage" src="<%= slides[i].image %>" alt="Здесь Слайдов Нет, Ищите их в другом замке" />
                         </div>
                     <% } %>
                 </div>
                 <div class="bControlPanel__eWrapper">
                     <div class="bControlPanel">
                         <div class="bControlPanel__eNavigation">
-                            <a href="" class="bControlPanel__eToFirstSlide">first</a>
-                            <a href="" class="bControlPanel__eToPreviousSlide">prev</a>
-                            <a href="" class="bControlPanel__eToNextSlide">next</a>
-                            <a href="" class="bControlPanel__eToLastSlide">last</a>
+                            <a href="" class="bControlPanel__eToFirstSlide jsToFirstSlide">first</a>
+                            <a href="" class="bControlPanel__eToPreviousSlide jsToPreviousSlide">prev</a>
+                            <a href="" class="bControlPanel__eToNextSlide jsToNextSlide">next</a>
+                            <a href="" class="bControlPanel__eToLastSlide jsToLastSlide">last</a>
                         </div>
                         <div class="bControlPanel__ePageNumberSwitcher">
-                            <a href="#" class="bControlPanel__eFullScreen" title="View Fullscreen" rel="nofollow">&nbsp;</a> 
                             <label class="bControlPanel__eGoToSlideLabel">
-                                <input type="text" name="bControlPanel__eGoToSlideInput" value="1">
-                                <span class="bControlPanel__eGoToSlideFrom">/65</span>
+                                <input type="text" name="bControlPanel__eGoToSlideInput jsGoToSlideInput" value="<%= pagingData.currentPage + 1 %>">
+                                <span class="bControlPanel__eGoToSlideFrom">/ <%= (pagingData.totalPages) ? pagingData.totalPages : 1 %></span>
                             </label>
                         </div>
                     </div>
