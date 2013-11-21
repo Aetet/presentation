@@ -1,25 +1,25 @@
 $(document).ready(function () {
     //Небольшой рассказ на тему бытия разработчиком на новом проекте до первого релиза
     var slides = [{
-        image: 'images/namelessone.jpg',
+        image: 'images/slides/namelessone.jpg',
         current: 'bSlide__eSlideContent__mShown'
     }, {
-        image: 'images/jayandbob.jpg',
+        image: 'images/slides/jayandbob.jpg',
         current: ''
     }, {
-        image: 'images/arma.jpg',
+        image: 'images/slides/arma.jpg',
         current: ''
     }, {
-        image: 'images/Fallout2Perks.jpg',
+        image: 'images/slides/Fallout2Perks.jpg',
         current: ''
     }, {
-        image: 'images/StarWars.jpg',
+        image: 'images/slides/StarWars.jpg',
         current: ''
     }, {
-        image: 'images/worldEnd.jpg',
+        image: 'images/slides/worldEnd.jpg',
         current: ''
     }, {
-        image: 'images/levelup.jpg',
+        image: 'images/slides/levelup.jpg',
         current: ''
     }];
     var presentation = new Presentation({dataSlides: slides});

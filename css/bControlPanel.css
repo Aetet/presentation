@@ -29,18 +29,35 @@
     float: right;
 }
 
-a.bControlPanel__eFullScreen {
-    float: right;
-}
-
 .bControlPanel__eGoToSlideLabel {
     float: right;
 }
 
 .bControlPanel__eGoToSlideInput {
-
+    outline: none;
+    border: 1px solid black;
+    width: 18px;
+    text-align: left;
 }
 
 .bControlPanel__eGoToSlideFrom {
 
+}
+
+.bControlPanel__eControlButton {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+.bControlPanel__eToFirstSlide {
+    background: url(../images/icons/first.png);
+}
+.bControlPanel__eToPreviousSlide {
+    background: url(../images/icons/prev.png);
+}
+.bControlPanel__eToNextSlide {
+    background: url(../images/icons/next.png);
+}
+.bControlPanel__eToLastSlide {
+    background: url(../images/icons/last.png);
 }

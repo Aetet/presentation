@@ -1,8 +1,3 @@
-.presentationRightPosition {
-}
-.bPresentation {
-    
-}
 
 .bPresentation__eWrapper {
     width: 600px;
@@ -10,15 +5,4 @@
     background-color: white;
     border: 1px solid black;
     margin: 10px;
-}
-.bPresentation__eNavigation {
-    display: block;
-    width: 106px;
-    margin: 0 auto;
-}
-
-.bPresentation__ePageNumberSwitcher {
-}
-.bPresentation__eFullScreen {
-    float: right;
 }

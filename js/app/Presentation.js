@@ -19,15 +19,31 @@ root.Presentation = (function(tmpl) {
 
             goToPageInput       : '.jsGoToSlideInput'
         };
+
+        /**
+         * Храним информацию о текущем состоянии нашего виджета.
+         * В частности текущую страницу, все доступные страницы и количество доступных страниц.
+         * @type {Object}
+         */
         this._pagingData = {
             currentPage: 0,
             totalPages: 0,
             pages: []
         };
+        /**
+         * активный класс для показываемого слайда.
+         * @type {String}
+         */
         this._activeClass = 'bSlide__eSlideContent__mShown';
         init.call(this,options);
     };
 
+    /**
+     * Инициализируем наше приложение
+     * @param {Object}  options                     Опции, которые устанавливают начальное состояние
+     * @param {String}  options.presentationRegion  optional CSS-селектор, в который будет встраиваться наш виджет
+     * @param {Array}   options.dataSlides          Слайды которые мы будем показывать
+     */
     function init (options) {
         var localOptions,
             presentationRegion,
@@ -54,10 +70,16 @@ root.Presentation = (function(tmpl) {
             
     }
 
-   
-
+    /**
+     * Функция-шаблонизатор, которая принимает на вход данные для шаблона.
+     * @type {[type]}
+     */
     template = tmpl("presentationTemplate");
 
+    /**
+     * Грязная функция для растягивания картинки на всю площадь слайда
+     * Вызывать из контекста объекта типа Presentation
+     */
     function changeAspectRatio() {
         var self = this;
         var slideContent = self.$el.find('.bSlide__eSlideContent.' + self._activeClass);
@@ -82,6 +104,10 @@ root.Presentation = (function(tmpl) {
     }
 
     Presentation.prototype = {
+        /**
+         * Показываем виджет на основе опций
+         * @param  {[type]} options 
+         */
         show: function (options) {
             var self = this;
             var html = template(options);
@@ -102,8 +128,16 @@ root.Presentation = (function(tmpl) {
 
             //Небольшой хак для нормального отображения картинок разного разрешения
         },
+        /**
+         * Снимаем уже навешанные обработчики, если есть на всякий случай
+         */
         clearEvents: function () {
             var self = this;
+            /**
+             * $el позволяет нам оставаться внутри виджета и не затрагивать остальные подобные виджеты, которые есть на странице.
+             * Могут возникнуть проблемы, если объекты будут вложены друг в друга. TODO fix this.
+             * @type {[type]}
+             */
             var $el = self.$el;
             var ui = self.ui;
 
@@ -112,6 +146,9 @@ root.Presentation = (function(tmpl) {
             $el.find(ui.nextSlideButton).off('click');
             $el.find(ui.lastSlideButton).off('click');
         },
+        /**
+         * навешиваем обработчики на интересные для нас элементы
+         */
         handleEvents: function () {
             var self = this;
             var $el = self.$el;
@@ -209,7 +246,6 @@ root.Presentation = (function(tmpl) {
                             currentPageContent.current = '';
                             pagingData.currentPage = slideNumber;
                             pagingData.pages[slideNumber].current= self._activeClass;
-                            console.log('pagingData', JSON.stringify(pagingData));
                             self.show({slides: pagingData.pages, pagingData: pagingData});
                         } else {
                             console.log('Ошибка при переключении на последний слайд с ', pagingData.currentPage, 'pagingData', pagingData);
@@ -221,6 +257,5 @@ root.Presentation = (function(tmpl) {
             });
         }
     };
-    console.log('window Presentation', window.Presentation);
     return Presentation;
 })(tmpl);
