@@ -18,6 +18,9 @@ $(document).ready(function () {
     }, {
         image: 'images/worldEnd.jpg',
         current: ''
+    }, {
+        image: 'images/levelup.jpg',
+        current: ''
     }];
     var presentation = new Presentation({dataSlides: slides});
 

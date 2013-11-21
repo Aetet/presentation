@@ -1,5 +1,4 @@
 .presentationRightPosition {
-    float: right;
 }
 .bPresentation {
     
@@ -10,6 +9,7 @@
     height: 400px;
     background-color: white;
     border: 1px solid black;
+    margin: 10px;
 }
 .bPresentation__eNavigation {
     display: block;

@@ -47,6 +47,8 @@ root.Presentation = (function(tmpl) {
             pagingData.totalPages = dataSlides.length;
             pagingData.pages = dataSlides;
 
+            self.firstShow = true;
+
             self.$el = $(presentationRegion);
             self.show({slides: dataSlides, pagingData: pagingData});
             
@@ -56,12 +58,49 @@ root.Presentation = (function(tmpl) {
 
     template = tmpl("presentationTemplate");
 
+    function changeAspectRatio() {
+        var self = this;
+        var slideContent = self.$el.find('.bSlide__eSlideContent.' + self._activeClass);
+        var slideContentWidth = slideContent.width();
+        var slideContentHeight = slideContent.height();
+        slideContent.find('img').each(function () {
+            var imgWidth = $(this).width();
+            var imgHeight = $(this).height();
+            var imgClass;
+            if ((imgWidth < slideContentWidth) && (imgHeight < slideContentHeight)) {
+                imgClass = 'bSlide__eImage__mTooSmall';
+            } else if (imgWidth < slideContentWidth) {
+                imgClass = 'bSlide__eImage__mWidthTooSmall';
+            } else if (imgHeight < slideContentHeight) {
+                imgClass = 'bSlide__eImage__mHeightTooSmall';
+            } else {
+                imgClass = '';
+            }
+//            var imgClass = ($(this).width() / $(this).height() > 1) ? 'bSlide__eImage__mWide' : 'bSlide__eImage__mTall';
+            $(this).addClass(imgClass);
+        });
+    }
+
     Presentation.prototype = {
         show: function (options) {
             var self = this;
-            self.$el.html(template(options));
+            var html = template(options);
+            self.$el.html(html);
+
+            //Страшный грязный хак. При первой загрузке у картинки 0 0 высота и ширина. Поэтому не может правильно определить высоту и ширину TODO Fix this
+            if (self.firstShow) {
+                setTimeout(function () {
+                    changeAspectRatio.call(self);
+                    self.firstShow = false;
+                }, 35);
+            } else {
+                changeAspectRatio.call(self);
+            }
+            
             self.clearEvents();
             self.handleEvents();
+
+            //Небольшой хак для нормального отображения картинок разного разрешения
         },
         clearEvents: function () {
             var self = this;
@@ -106,9 +145,11 @@ root.Presentation = (function(tmpl) {
 
                 if (currentPageContent) {
                     currentPageContent.current = '';
-                    pagingData.currentPage = (currentPage > 0) ? currentPage - 1 : 0 ;
-                    pagingData.pages[pagingData.currentPage].current= self._activeClass;
-                    self.show({slides: pagingData.pages, pagingData: pagingData});
+                    if (currentPage > 0) {
+                        pagingData.currentPage = currentPage - 1;
+                        pagingData.pages[pagingData.currentPage].current= self._activeClass;
+                        self.show({slides: pagingData.pages, pagingData: pagingData});
+                    }
                 } else {
                     console.log('Ошибка при переключении на предыдущий слайд с ', pagingData.currentPage, 'pagingData', pagingData);
                 }
@@ -125,9 +166,12 @@ root.Presentation = (function(tmpl) {
 
                 if (currentPageContent) {
                     currentPageContent.current = '';
-                    pagingData.currentPage = (currentPage < pagingData.totalPages - 1) ? currentPage + 1 : pagingData.totalPages - 1 ;
-                    pagingData.pages[pagingData.currentPage].current= self._activeClass;
-                    self.show({slides: pagingData.pages, pagingData: pagingData});
+                    if (currentPage < pagingData.totalPages - 1) {
+                        pagingData.currentPage = currentPage + 1;
+                        pagingData.pages[pagingData.currentPage].current= self._activeClass;
+                        self.show({slides: pagingData.pages, pagingData: pagingData});
+                    }
+                    
                 } else {
                     console.log('Ошибка при переключении на следующий слайд с ', pagingData.currentPage, 'pagingData', pagingData);
                 }
@@ -147,6 +191,32 @@ root.Presentation = (function(tmpl) {
                     self.show({slides: pagingData.pages, pagingData: pagingData});
                 } else {
                     console.log('Ошибка при переключении на последний слайд с ', pagingData.currentPage, 'pagingData', pagingData);
+                }
+            });
+
+            $el.find(ui.goToPageInput).keydown(function (e) {
+                var currentPageContent;
+                var target = e.currentTarget;
+                console.log('target', target);
+
+                if (e.keyCode === 13) {
+                    var slideNumber = +target.value - 1;
+                    console.log('slideNumber', slideNumber);
+
+                    if (slideNumber >= 0 && slideNumber <= pagingData.totalPages) {
+                        currentPageContent = pagingData.pages[pagingData.currentPage];
+                        if (currentPageContent) {
+                            currentPageContent.current = '';
+                            pagingData.currentPage = slideNumber;
+                            pagingData.pages[slideNumber].current= self._activeClass;
+                            console.log('pagingData', JSON.stringify(pagingData));
+                            self.show({slides: pagingData.pages, pagingData: pagingData});
+                        } else {
+                            console.log('Ошибка при переключении на последний слайд с ', pagingData.currentPage, 'pagingData', pagingData);
+                        }
+                    } else {
+                        alert('Старые добрые стариковские уведомления о неправильной работе приложения');
+                    }
                 }
             });
         }
